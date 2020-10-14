@@ -18,6 +18,12 @@ spec:
         volumeMounts:
         - name: config-volume
           mountPath: /tmp/config-data
+        env:    
+        - name: TOP_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: hello-openshift-secret
+              key: topsecret        
         livenessProbe:
           httpGet:
             path: /
@@ -31,18 +37,6 @@ spec:
             scheme: HTTP
           initialDelaySeconds: 30
         imagePullPolicy: Always
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 9080
-            scheme: HTTP
-          initialDelaySeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /hello-openshift/resources/hello
-            port: 9080
-            scheme: HTTP
-          initialDelaySeconds: 30
       volumes:
       - name: config-volume
         configMap:
