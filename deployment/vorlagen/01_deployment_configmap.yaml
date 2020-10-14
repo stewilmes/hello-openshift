@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: hello-openshift
-        image: 172.30.1.1:5000/training15/hello-openshift:build-1
+        image: 172.30.1.1:5000/training10/hello-openshift:build-1
         volumeMounts:
         - name: config-volume
           mountPath: /tmp/config-data
